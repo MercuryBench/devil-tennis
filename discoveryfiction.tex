@@ -1,0 +1,228 @@
+
+
+\documentclass[11pt]{article}
+\usepackage{a4wide}
+
+\usepackage{amsmath,amssymb,amsfonts,amsthm,amscd} % Typical maths resource packages
+\usepackage{graphics}                 % Packages to allow inclusion of graphics
+\usepackage{color}                    % For creating coloured text and background
+%\usepackage{hyperref}                % For creating hyperlinks in cross references
+\usepackage{mathrsfs}
+\usepackage{dsfont}
+\usepackage{fullpage}
+\usepackage{mathtools}
+%\usepackage[margin=2cm]{geometry}
+%\usepackage{indentfirst}
+\usepackage{bbold}
+\usepackage{url}         %to include url's in citations
+\usepackage{enumerate}  %for alternative numberings and bullets in lists
+%\usepackage[notcite,notref]{showkeys}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{todonotes}
+%\oddsidemargin 0cm
+%\evensidemargin 0cm
+%\usepackage[margin=1.3in]{geometry}
+%\setlength{\parindent}{0pt}
+%\setlength{\parskip}{\baselineskip}
+\setlength{\parskip}{0.05in}
+
+\usepackage{nccmath}   %for mfrac; medium-sized fractions
+\usepackage{hyperref}
+\hypersetup{
+  colorlinks   = true, %Colours links instead of boxes
+  urlcolor     = black, %Colour for external hyperlinks
+  linkcolor    = blue, %Colour of internal links
+  citecolor   = blue %Colour of citations, could be ``red''
+}
+
+\usepackage{paracol}
+% fix a problem with footnotes
+\makeatletter
+\newbox\mybox
+\def\pcol@makenormalcol{%
+  \ifvoid\footins 
+  \else
+\global\setbox\mybox\box\footins
+   \fi
+\setbox\@outputbox\box\@holdpg
+  \let\@elt\relax
+  \xdef\@freelist{\@freelist\@midlist}%
+  \global\let\@midlist\@empty
+  \@combinefloats}
+
+\makeatother
+
+
+\usepackage{lipsum}
+
+\usepackage[ruled,linesnumbered,noend]{algorithm2e}
+%\usepackage{tikz}
+%\usetikzlibrary{matrix}
+
+\usepackage{etoolbox} % Required for the next command for adding QED after remarks
+\AtEndEnvironment{rem}{\qed}
+
+
+%%%%% THEOREMS, etc ... %%%%%%%
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{thm}[theorem]{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{lem}[theorem]{Lemma}
+\newtheorem{prop}[theorem]{Proposition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{cor}[theorem]{Corollary}
+\newtheorem{hyp}[theorem]{Hypothesis}
+\theoremstyle{definition}
+\newtheorem{assume}[theorem]{Assumption}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{defn}[theorem]{Definition}
+\newtheorem{rem}[theorem]{Remark}
+%\AtEndEnvironment{rem}{\qed}
+\theoremstyle{remark}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{ex}[theorem]{Example}
+\newtheorem{remark}[theorem]{Remark}
+%\newtheorem{rem}[theorem]{Remark}
+\newtheorem{nota}[theorem]{Notation}
+\numberwithin{equation}{section}
+\newtheorem*{theorem*}{Theorem}
+
+\newcommand{\e}{\exists}
+\newcommand{\f}{\forall}
+
+
+
+%%%%%%US Macros%%%%%%
+
+\newcommand*\US[1]{\textcolor{cyan}{#1}}
+
+\newcommand{\R}{\mathbb{R}}
+
+%\newcommand\skp[2]{\left\langle #1 , #2 \right\rangle}
+%\newcommand\bra[1]{\left({#1}\right)}
+%\newcommand{\bw}{\mathrm{bw}}
+%\newcommand{\fw}{\mathrm{fw}}
+%\newcommand{\rev}{\mathrm{rev}}
+%\newcommand{\grad}{\nabla}
+%\newcommand{\irr}{\mathrm{irr}}
+%\newcommand\pra[1]{\left[{#1}\right]}
+%\newcommand\set[1]{\left\{#1\right\}}
+%\newcommand\norm[1]{\left\lVert#1\right\rVert}
+%\newcommand\abs[1]{\left\lvert#1\right\rvert}
+%\newcommand{\e}{\mathrm{e}}
+\DeclareMathOperator{\dd}{\mathrm{d}}
+\renewcommand{\d}{\mathrm d\,}
+\newcommand{\N}{\mathbb N}
+\renewcommand{\P}{\mathbb P}
+\newcommand{\E}{\mathbb E}
+\newcommand{\U}{\mathcal U}
+\renewcommand\L{\mathcal{L}}
+\newcommand{\calP}{\mathcal P}
+\newcommand{\eps}{\varepsilon}
+
+%\DeclareMathOperator*{\argmax}{arg\,max}
+%\DeclareMathOperator*{\argmin}{arg\,min}
+%\DeclareMathOperator*{\esssup}{ess\,sup}
+%\DeclareMathOperator{\var}{var}
+%\DeclareMathOperator{\Id}{Id}
+%\DeclareMathOperator{\Jac}{Jac}
+%\DeclareMathOperator{\J}{J}
+%\DeclareMathOperator{\Tr}{tr}
+%\DeclareMathOperator{\AC}{AC}
+%\DeclareMathOperator{\PI}{PI}
+%\DeclareMathOperator{\TI}{TI}
+%\DeclareMathOperator{\LSI}{LSI}
+%\DeclareMathOperator{\Prob}{\mathrm{Prob}}
+%%\newcommand{\EX}[1][E]{\ensuremath {\mathds{#1}}}
+%\DeclareMathOperator{\sym}{sym}
+%\newcommand{\super}[1]{^{\scriptscriptstyle{(#1)}}}
+
+
+
+%TOC
+%\usepackage{tocloft}
+%\se\tlength\cftparskip{-2pt}
+%\setlength\cftbeforesecskip{1pt}
+%\setlength\cftaftertoctitleskip{2pt}
+\setlength{\parindent}{0cm}
+
+\date \today
+\title{Discovery fiction for proofs}
+\author{Philipp Wacker\thanks{phkwacker@gmail.com}}
+\begin{document}
+\maketitle
+\section{Keeping apart proof and proof-finding using discovery fiction}
+    As working mathematicians we are familiar with the genesis of a proof, which involves the process of exploring the problem, trying (and failing at) things, while coming up with better ideas. We argue that it is not helpful to hide this necessary component of mathematical practice when teaching mathematics. We believe it is necessary that students are confronted with the fact that proofs do not organically grow into their final form in a linear fashion. A middle ground between the very chaotic exposition that is to follow 
+
+
+\columnratio{0.5,0.5}
+\begin{paracol}{2}
+\begin{nthcolumn*}{0}
+The chess match between the devil (playing white) and Emmy (playing black) will afterwards be recorded like this\footnote{Actually this is the ``Game of the Century'' between Bobby Fisher and Donald Byrne}:
+1. Nf3 Nf6 2. c4 g6 3. Nc3 Bg7 4. d4 O-O 5. Bf4 d5 6. Qb3 dxc4 7. Qxc4 c6 8. e4 Nbd7 9. Rd1 Nb6 10. Qc5 Bg4 11. Bg5 Na4 12. Qa3 Nxc3 13. bxc3 Nxe4 14. Bxe7 Qb6 15. Bc4 Nxc3 16. Bc5 Rfe8+ 17. Kf1 Be6 18. Bxb6 Bxc4+ 19. Kg1 Ne2+ 20. Kf1 Nxd4+ 21. Kg1 Ne2+ 22. Kf1 Nc3+ 23. Kg1 axb6 24. Qb4 Ra4 25. Qxb6 Nxd1 26. h3 Rxa2 27. Kh2 Nxf2 28. Re1 Rxe1 29. Qd8+ Bf8 30. Nxe1 Bd5 31. Nf3 Ne4 32. Qb8 b5 33. h4 h5 34. Ne5 Kg7 35. Kg1 Bc5+ 36. Kf1 Ng3+ 37. Ke1 Bb4+ 38. Kd1 Bb3+ 39. Kc1 Ne2+ 40. Kb1 Nc3+ 41. Kc1 Rc2\# 0-1
+\end{nthcolumn*}
+    \begin{nthcolumn}{1}
+    One possible proof is the following: Let $\eps > 0$ and $x_0\in\R$. Choose $\delta := \min\{\frac{\eps}{4|x_0|},\sqrt\frac{\eps}{2}\}$. Then for any $x\in \R$ with $|x-x_0|<\delta$, we have
+    \begin{align*}
+        |f(x)-f(x_0)| &= |x^2-x_0^2| = |x-x_0|\cdot |x+x_0|\\
+        &= |x-x_0|\cdot |x-x_0 + 2x_0|\\
+        &\leq |x-x_0|\cdot (|x-x_0| + 2|x_0|)\\
+        &< \delta\cdot (\delta + 2|x_0|)\\
+        &= \delta^2 + \delta\cdot 2|x_0|\\
+        &\leq \frac{\eps}{2} + \frac{\eps}{2}\\
+        &=\eps
+    \end{align*}
+    \end{nthcolumn}  
+\begin{nthcolumn*}{0}
+This is indeed a full account of the chess match. We can take a chess board, proceed with all turns and see that indeed Black wins the match. 
+\end{nthcolumn*}
+    \begin{nthcolumn}{1}
+    This is indeed a correct proof for the continuity of the quadratic function. We can go through this proof line by line, checking correctness of each step and finally concluding the statement. 
+    \end{nthcolumn}  
+\begin{nthcolumn*}{0}
+Does reading this make us a good chess player? Of course not! We do not get any insight into the thought process of the chess players involved, although a close analysis of the moves might give us hints of what earlier moves were supposed to do later. Neither do we get any concrete pointers on how to become a better chess player. 
+\end{nthcolumn*}
+    \begin{nthcolumn}{1}
+    Does reading this enable us to prove continuity of some other function (e.g. the square root)? Of course not! We do not know what the though process of the person devising the proof was, even if some of the later inequalities give us hints on earlier choices. Neither do we get any pointers on how to become better at proving things in general. 
+    \end{nthcolumn}  
+\begin{nthcolumn*}{0}
+A documentation of a chess game is not the chess game itself, and it is also not a suitable beginners's reference for learning how to play chess.
+\end{nthcolumn*}
+    \begin{nthcolumn}{1}
+    A recorded proof does not resemble the process of finding a proof, and it is also not a suitable beginner's reference for learning how to prove things.
+    \end{nthcolumn}  
+\end{paracol}
+
+\section{Discovery Fiction}
+We will use the concept of discovery fiction (\href{https://michaelnotebook.com/df/index.html}{https://michaelnotebook.com/df/index.html}) in order to record not only the finished proof, but also an account of how it would be in principle possible to find the proof (a fiction about the discovery process). This is better done orally, or in a video, but we can try to do this in text as well. We will not attempt to do this in parallel for the chess example (we won't pretend to know what Bobby Fisher and Donald Byrne thought during their match), but the metaphor clearly extends to that example.
+
+A fairly realistic description of a gifted undergraduate student's discovery fiction would look like this:\todo{put this thought process into a thought bubble next to a doodle of Emmy, the mathematician. }
+
+OK, so we want to prove that $f(x) = x^2$ is continuous. The $\forall$ symbol means that I cannot choose $\eps>0$ and $x_0\in \R$, so we will let them be arbitrary but fixed. Now I have to construct a $\delta > 0$ depending on $\eps$ and $x_0$ such that ... OK wow, that are too many steps to think about at once. Let's go the end. What do we want to prove?
+
+$|f(x)-f(x_0)|$ has to be bounded from above by the $\eps$ from above. OK, let me see whether we can manipulate this expression and bound it somehow. $|f(x)-f(x_0)| = |x^2-x_0^2|$. Aha, I can factor this term into linear factors. I don't know whether that will help, but let's proceed for now: $|f(x)-f(x_0)| = |x^2-x_0^2| = |x-x_0|\cdot |x+x_0|$. AHA! There is one factor of $|x-x_0|$. Later we will only work with $x$ such that $|x-x_0|<\delta$, so this allows us to bound the first term! So clearly (later, when we figure out the gaps in the middle) we will have  $|f(x)-f(x_0)| < \delta \cdot |x+x_0|$. Hm, what can we do with the second part?\footnote{At this point, it is entirely possible that we will need to spend some minutes, hours, or days, (depending on the prover's experience), and multiple procrastination sessions, in order to come up with the next idea. The flow of text at this point wrongly suggests that this is a quick process every time.} OK, so $|x+x_0|$ is somehow a bit like $|x-x_0|$, but it is `bigger''? Can I separate out the known (and bound-able) term $|x-x_0|$ and an additional error term? We can write $|x+x_0| = |x-x_0 + 2x_0|$ (oh god, this already looks ugly, maybe I should first clean up my kitchen and come back later?). Well OK, I can use the triangle inequality here. Ugh! So $|x+x_0| \leq |x-x_0| + 2|x_0|$.\footnote{We have now probably scribbled a full page of scrap paper, we have tried some things, some things did not work, there are a lot of calculations scratched through, and coffee stains).}  Going back to our initial term, we now have $|f(x)-f(x_0)|\leq |x-x_0|\cdot (|x-x_0| + 2|x_0|) = |x-x_0|^2 + 2|x-x_0|\cdot |x_0|$. Later, we can bound the difference between $x$ and $x_0$, so we actually have $|f(x)-f(x_0)| < \delta^2 + 2|x_0|\cdot \delta$. OK, so now we are finally getting somewhere... What do we have to do again?\footnote{We are flipping through the pages, having another look at the assignment} OK, so $\eps$ and $x_0$ are given, we don't have any control over it. We can only choose $\delta$, but this choice can depend on $\eps$ and $x_0$ (in fact, it probably will \textit{have to }depend on them!) And this choice has to be so ``good'', that we can bound the final expression from above by $\eps$. OK, so in essence we have to choose $\delta$ such that $\delta^2 + 2|x_0|\cdot \delta < \eps$. How do we do that? This is a quadratic inequality the variable $\delta$, so we will need to look for roots of the quadratic and figure out which way the parabola is pointing, and then choose $\delta$ as one of the two roots (or one root? or no real roots for this quadratic function? Ugh, I hate this. Why didn't I listen to my mom and apply to med school?) [a day passes].\footnote{We tried this calculation two times (because we made a mistake somewhere which we do not catch at first, and then we got confused), but then we lost patience and instead watched a TV show for the rest of the evening. It is possible to do it this way (leading to a different choice for $\delta$, and a differently-looking proof than will appear later). In this instance, the next day we decide to try something else because maybe there is a quicker way.} OK, so I don't want to compute this quadric right now. I want to bound\footnote{We will repeatedly write down the same thing over and over again, because we do not want to browse back and forth through are now multiple pages of scrap paper filled with dead ends.} $\delta^2 + 2\delta\cdot |x_0|$ Can we bound the two terms $\delta^2$ and $2|x_0|\cdot \delta$ separately? The first thing is of course easy. We just need $\delta^2$ to be small. So how about $\delta \approx \sqrt \eps$. Then $\delta^2 \approx \eps$, which is roughly what we want. Hm, but this does not guarantee that the second term is small, because $2\delta \cdot |x_0| = 2\sqrt\eps|x_0|$ can be quite large, if $|x_0|$ is large... If we were to just bound this term, we would need $\delta \approx \frac{\eps1}{2|x_0|}$, because then $2\delta \cdot |x_0| \approx \eps$. OK, two problems: First, what happens if $|x_0|=0$? Then $\delta = +\infty$, roughly speaking. Second, how can we combine those two requirements for $\delta$? It has to be roughly $\sqrt\eps$ and at the same time roughly $\frac{\eps}{2|x_0|}$. Ah, of course it is enough if it is \textit{smaller} than those two terms. So let's choose $\delta = \min\{\sqrt\eps, \frac{\eps}{2|x_0|}\}$, so that both $\delta \leq \sqrt\eps$ and $\delta \leq  \frac{\eps}{2|x_0|}$. This incidentally also solves our problem with $x_0=0$, because in this case the first term will always be smaller, i.e. $\delta = \sqrt\eps$. Then, using one inequality for each term, $\delta^2+ 2\delta\cdot |x_0| \leq \sqrt\eps^2 + \frac{2|x_0|\eps}{2|x_0|} = \eps + \eps = 2\eps$. Ah well, this is a factor of 2. Of course this is not much of a big deal, but let's get rid of it by scaling $\delta$ suitably: We now choose $\delta = \min\{\sqrt\frac\eps 2, \frac{\eps}{4|x_0|}\}$. Does this work now?\footnote{we do the calculation with the modified $\delta$ on the edge of our scrap paper}  OK, wow, we did it! No let's write down everything neatly:
+
+\framebox{ \parbox{\textwidth}{Let $\eps > 0$ and $x_0\in\R$. Choose \begin{equation}
+    \delta := \min\{\frac{\eps}{4|x_0|},\sqrt\frac{\eps}{2}\}.\label{eq:delta}
+\end{equation} Then for any $x\in \R$ with $|x-x_0|<\delta$, we have
+    \begin{equation}\label{eq:bound}
+        \begin{split}
+        |f(x)-f(x_0)| &= |x^2-x_0^2| = |x-x_0|\cdot |x+x_0|\\
+        &= |x-x_0|\cdot |x-x_0 + 2x_0|\\
+        &\leq |x-x_0|\cdot (|x-x_0| + 2|x_0|)\\
+        &< \delta\cdot (\delta + 2|x_0|)\\
+        &= \delta^2 + \delta\cdot 2|x_0|\\
+        &\leq \frac{\eps}{2} + \frac{\eps}{2}\\
+        &=\eps
+        \end{split}
+    \end{equation}}}
+
+\vspace{1em}This is exactly the proof from above. Textbooks (and most live lectures, regardless of the medium) usually only record this final result, similarly to how chess records only show the chess notation. While it saves time and paper, it completely hides the creative process which we all (extrapolating from our own experience) go through when we attempt a proof. 
+
+This gives the wrong impression that this is how mathematics is done.
+
+Of course, experience enables us to avoid certain dead ends, eventually we will know the tricks, and our manual computations will likely become better, so the discovery process will become shorter and more efficient in the course of our mathematical career. But note how we started the proof from the end, looking at the final term $|f(x)-f(x_0)|$ before actually deciding on a choice of $\delta$? This will always be the case, similarly to how a proficient chess player will try to think a few steps in advance, with a medium-term goal to work towards, and figuring out necessary intermediate steps to get ther. No person on earth has ever conceived the proof in the framed box in this order, and we boldly and confidently state that all working mathematicians will always start with the bounds in \eqref{eq:bound}, filling in the blanks in choosing a suitable $\delta$ in \eqref{eq:delta} later. 
+\end{document}

@@ -1,0 +1,452 @@
+
+\documentclass[11pt]{article}
+\usepackage{a4wide}
+
+\usepackage{amsmath,amssymb,amsfonts,amsthm,amscd} % Typical maths resource packages
+\usepackage{graphics}                 % Packages to allow inclusion of graphics
+\usepackage{color}                    % For creating coloured text and background
+%\usepackage{hyperref}                % For creating hyperlinks in cross references
+\usepackage{mathrsfs}
+\usepackage{dsfont}
+\usepackage{fullpage}
+\usepackage{mathtools}
+%\usepackage[margin=2cm]{geometry}
+%\usepackage{indentfirst}
+\usepackage{bbold}
+\usepackage{url}         %to include url's in citations
+\usepackage{enumerate}  %for alternative numberings and bullets in lists
+%\usepackage[notcite,notref]{showkeys}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{todonotes}
+%\oddsidemargin 0cm
+%\evensidemargin 0cm
+%\usepackage[margin=1.3in]{geometry}
+%\setlength{\parindent}{0pt}
+%\setlength{\parskip}{\baselineskip}
+\setlength{\parskip}{0.05in}
+
+\usepackage{nccmath}   %for mfrac; medium-sized fractions
+\usepackage{hyperref}
+\hypersetup{
+  colorlinks   = true, %Colours links instead of boxes
+  urlcolor     = black, %Colour for external hyperlinks
+  linkcolor    = blue, %Colour of internal links
+  citecolor   = blue %Colour of citations, could be ``red''
+}
+
+\usepackage{paracol}
+% fix a problem with footnotes
+\makeatletter
+\newbox\mybox
+\def\pcol@makenormalcol{%
+  \ifvoid\footins 
+  \else
+\global\setbox\mybox\box\footins
+   \fi
+\setbox\@outputbox\box\@holdpg
+  \let\@elt\relax
+  \xdef\@freelist{\@freelist\@midlist}%
+  \global\let\@midlist\@empty
+  \@combinefloats}
+
+\makeatother
+
+
+\usepackage{lipsum}
+
+\usepackage[ruled,linesnumbered,noend]{algorithm2e}
+%\usepackage{tikz}
+%\usetikzlibrary{matrix}
+
+\usepackage{etoolbox} % Required for the next command for adding QED after remarks
+\AtEndEnvironment{rem}{\qed}
+
+
+%%%%% THEOREMS, etc ... %%%%%%%
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{thm}[theorem]{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{lem}[theorem]{Lemma}
+\newtheorem{prop}[theorem]{Proposition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{cor}[theorem]{Corollary}
+\newtheorem{hyp}[theorem]{Hypothesis}
+\theoremstyle{definition}
+\newtheorem{assume}[theorem]{Assumption}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{defn}[theorem]{Definition}
+\newtheorem{rem}[theorem]{Remark}
+%\AtEndEnvironment{rem}{\qed}
+\theoremstyle{remark}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{ex}[theorem]{Example}
+\newtheorem{remark}[theorem]{Remark}
+%\newtheorem{rem}[theorem]{Remark}
+\newtheorem{nota}[theorem]{Notation}
+\numberwithin{equation}{section}
+\newtheorem*{theorem*}{Theorem}
+
+\newcommand{\e}{\exists}
+\newcommand{\f}{\forall}
+
+
+
+%%%%%%US Macros%%%%%%
+
+\newcommand*\US[1]{\textcolor{cyan}{#1}}
+
+\newcommand{\R}{\mathbb{R}}
+
+%\newcommand\skp[2]{\left\langle #1 , #2 \right\rangle}
+%\newcommand\bra[1]{\left({#1}\right)}
+%\newcommand{\bw}{\mathrm{bw}}
+%\newcommand{\fw}{\mathrm{fw}}
+%\newcommand{\rev}{\mathrm{rev}}
+%\newcommand{\grad}{\nabla}
+%\newcommand{\irr}{\mathrm{irr}}
+%\newcommand\pra[1]{\left[{#1}\right]}
+%\newcommand\set[1]{\left\{#1\right\}}
+%\newcommand\norm[1]{\left\lVert#1\right\rVert}
+%\newcommand\abs[1]{\left\lvert#1\right\rvert}
+%\newcommand{\e}{\mathrm{e}}
+\DeclareMathOperator{\dd}{\mathrm{d}}
+\renewcommand{\d}{\mathrm d\,}
+\newcommand{\N}{\mathbb N}
+\renewcommand{\P}{\mathbb P}
+\newcommand{\E}{\mathbb E}
+\newcommand{\U}{\mathcal U}
+\renewcommand\L{\mathcal{L}}
+\newcommand{\calP}{\mathcal P}
+\newcommand{\eps}{\varepsilon}
+
+%\DeclareMathOperator*{\argmax}{arg\,max}
+%\DeclareMathOperator*{\argmin}{arg\,min}
+%\DeclareMathOperator*{\esssup}{ess\,sup}
+%\DeclareMathOperator{\var}{var}
+%\DeclareMathOperator{\Id}{Id}
+%\DeclareMathOperator{\Jac}{Jac}
+%\DeclareMathOperator{\J}{J}
+%\DeclareMathOperator{\Tr}{tr}
+%\DeclareMathOperator{\AC}{AC}
+%\DeclareMathOperator{\PI}{PI}
+%\DeclareMathOperator{\TI}{TI}
+%\DeclareMathOperator{\LSI}{LSI}
+%\DeclareMathOperator{\Prob}{\mathrm{Prob}}
+%%\newcommand{\EX}[1][E]{\ensuremath {\mathds{#1}}}
+%\DeclareMathOperator{\sym}{sym}
+%\newcommand{\super}[1]{^{\scriptscriptstyle{(#1)}}}
+
+
+
+%TOC
+%\usepackage{tocloft}
+%\se\tlength\cftparskip{-2pt}
+%\setlength\cftbeforesecskip{1pt}
+%\setlength\cftaftertoctitleskip{2pt}
+\setlength{\parindent}{0cm}
+
+\date \today
+\title{Can Emmy ($\exists$) beat the devil ($\forall$) in tennis? \\[0.5em] \large A case for teaching analysis concepts with a better story}
+\author{Philipp Wacker\thanks{phkwacker@gmail.com}}
+\begin{document}
+\maketitle
+\begin{abstract}
+    An important concept of analysis is the use of existential and universal quantifiers. Mastery of both the concept as well as the gritty ``arithmetic'' techniques are both vital components for performing elementary analysis proofs, like showing boundedness and continuity of maps, or convergence of sequences. We propose a way to reduce this twofold cognitive burden by making the general concept more accessible. The main ingredients of this didactical approach are personification (both as a cognitive shortcut and as a mnemonic device), doodlification, and discovery fiction (helping to distinguish between the thought process spawning a proof, and the polished product that is usually presented in textbooks).
+The goal of this manuscript is to spark a discussion about the way we teach analysis, and whether we can improve on our current practice. 
+\end{abstract}
+
+
+
+    What follows is an exposition for a didactical device that can be applied in a classroom setting with the goal of teaching mathematical proofs using existential ($\exists$) and universal ($\forall$) quantifiers, by personifying them in a way that is consistent with their role in mathematical proofs -- as $\e$mmy and de$\f$il (abbreviations come with due apologies to typography nerds). This technique will not help with the actual work involved in designing a specific $\varepsilon$-$\delta$ proof, but it may reduce mental load during the first few encounters with this concept by making the concept more accessible by placing it in a setting which is more readily humanly comprehensible.
+
+    A long list of caveats is in order: The author is not trained in the science of learning psychology, he is ignorant about most of the relevant literature in this field, and makes no attempt for empirical validation.
+
+    The author has learned about mathematics by absorbing conventional calculus and analysis lectures -- in some sense despite this fact. His struggle and his own teaching experience informs the content in this manuscript. He does not claim to propose a silver bullet or to having solved a meaningful fraction of the problem of teaching difficult mathematics.
+
+\section{Proving boundedness of a map: Beating the devil in tennis}
+
+\label{sec:Tennis}
+The following two situations are isomorphic. (The proof of this statement is left to the interested reader.) 
+\setlength{\columnseprule}{0.4pt}
+\setlength{\columnsep}{2em}
+\begin{paracol}{2}
+\begin{nthcolumn*}{0}
+Your name is $\e$mmy. The de$\f$il is challenging you to beat him at Tennis, but with your serve alone. 
+\end{nthcolumn*}     
+    \begin{nthcolumn}{1}
+    Your professor is asking you to prove that the map $f: \R\to\R$ with $x\mapsto \frac{1}{1+x^2}$ is bounded from above. 
+    \end{nthcolumn}
+\begin{nthcolumn*}{0}
+\textbf{The rules are:}
+\end{nthcolumn*}     
+    \begin{nthcolumn}{1}
+    \textbf{This means that you need to show the following:}
+    \end{nthcolumn}
+\begin{nthcolumn*}{0}
+ $\e$mmy has to perform such a miraculously \textcolor{blue}{good serve} that
+\end{nthcolumn*}     
+    \begin{nthcolumn}{1}
+    $\exists \textcolor{blue}{M}\in \R$ \textcolor{gray}{(There exists a constant $M$),}
+    \end{nthcolumn}
+\begin{nthcolumn*}{0}
+any \textcolor{blue}{return} of the de$\f$il
+\end{nthcolumn*}     
+    \begin{nthcolumn}{1}
+    $\forall {\color{blue}{x}}\in \R$ \textcolor{gray}{(no matter which point is chosen),}
+    \end{nthcolumn}
+\begin{nthcolumn*}{0}
+is futile and  $\e$mmy wins the \textcolor{blue}{match}.
+\end{nthcolumn*}     
+    \begin{nthcolumn}{1}
+    \textcolor{gray}{we have} $f(x) \leq M. \textcolor{blue}{\qed}$ 
+    \end{nthcolumn}
+\begin{nthcolumn*}{0}
+\textbf{The match starts. }
+\end{nthcolumn*}     
+    \begin{nthcolumn}{1}
+    \textbf{We start with the proof now.}
+    \end{nthcolumn}
+\begin{nthcolumn*}{0}
+  You perform a \textcolor{blue}{serve}.
+\end{nthcolumn*}     
+    \begin{nthcolumn}{1}
+    Let \textcolor{blue}{$M = 1$} \textcolor{gray}{(our choice)}
+    \end{nthcolumn}
+\begin{nthcolumn*}{0}
+The de$\f$il tries to \textcolor{blue}{return},
+\end{nthcolumn*}     
+    \begin{nthcolumn}{1}
+    and given \textit{any} ${\color{blue}{x}}\in \R$ \textcolor{gray}{(not our choice)}, 
+    \end{nthcolumn}
+\begin{nthcolumn*}{0}
+but no use: He misses the ball, and  you \textcolor{blue}{win}.
+\end{nthcolumn*}     
+    \begin{nthcolumn}{1}
+    we have $x^2 \geq 0$. This means that $1+x^2\geq 1$, and thus $\frac{1}{1+x^2}\leq 1 = M$. \textcolor{blue}{QED}
+    \end{nthcolumn}
+\end{paracol}
+\ifvoid\mybox\else\insert\footins{\unvbox\mybox}\fi
+There are a few things to note here: 
+\begin{itemize}
+    \item First we have to make sure that we $\{$understand the rules of the game, know what we need to do in order prove a statement$\}$. Then we need to actually $\{$play, perform the proof$\}$. 
+    \item It is possible to $\{$lose the match, botch the proof$\}$: If $\e$mmy makes a bad serve, she will lose! Similarly, if we start out with a bad choice of $M$ in the proof (e.g. $M=0$), then we won't be able to finish the proof. This does not mean that the statement is wrong (just like a match is not hopeless only because there is technically a possibility of losing).
+    \item Even if we $\{$watch 10,000 tennis matches, read 10,000 mathematical proofs$\}$, we can stay very bad $\{$tennis players, mathematicians$\}$. 
+\end{itemize} 
+
+\section{Proving continuity of a function: Defeating the devil at chess}
+Our protagonist has overcome their challenge. Alas, there is more to come! (Isomorphy of the following two scenarios is an easy corollary from the corresponding statement in Section \ref{sec:Tennis}.)
+\columnratio{0.5,0.5}
+\begin{paracol}{2}
+\begin{nthcolumn*}{0}
+$\e$mmy has been challenged to a game of chess by the De$\f$il. He is confronting her with a very specific chess situation:
+\end{nthcolumn*}
+    \begin{nthcolumn}{1}
+    You are trying to prove continuity of some function $f$ involving existential ($\e$) and universal ($\f$) quantifiers.
+    \end{nthcolumn}
+        
+\begin{nthcolumn*}{0}
+The De$\f$il will start with a first \textcolor{blue}{move} of his choosing.
+\end{nthcolumn*}
+    \begin{nthcolumn}{1}
+    $ \forall {\color{blue}x_0\in\R, \eps > 0}$ \textcolor{gray}{(No matter which point $x_0\in \R$ and which tolerance $\eps > 0$),}
+    \end{nthcolumn}
+
+\begin{nthcolumn*}{0}
+$\e$mmy will then counter with a \textcolor{blue}{reply} which has to be such a powerful move that
+\end{nthcolumn*}
+    \begin{nthcolumn}{1}
+    $\exists {\color{blue}\delta > 0}$ \textcolor{gray}{(we can always find a value $\delta > 0$)},
+    \end{nthcolumn}
+
+\begin{nthcolumn*}{0}
+no matter how good the De$\f$il's next \textcolor{blue}{move} is,
+\end{nthcolumn*}
+    \begin{nthcolumn}{1}
+    $\forall {\color{blue}x\in\R, |x-x_0|<\delta}:$ \textcolor{gray}{(such that for any choice of $x_0$ under the condition that $|x-x_0|< \delta$)}
+    \end{nthcolumn}
+        
+\begin{nthcolumn*}{0}
+$\e$mmy will have won the game. \textcolor{blue}{Checkmate}
+\end{nthcolumn*}
+    \begin{nthcolumn}{1}
+    \textcolor{gray}{we have} $|f(x)-f(x_0)| < \eps. {\color{blue}\qed}$
+    \end{nthcolumn}     
+\end{paracol}
+\ifvoid\mybox\else\insert\footins{\unvbox\mybox}\fi
+
+% \columnratio{0.33,0.3}
+% \begin{paracol}{3}
+% \begin{nthcolumn*}{0}[\section{Winning against the devil in a chess match}]
+% Emmy\footnote{Emmy Noether, 23 March 1882 – 14 April 1935} ($\e$) is trying to win a match of chess against the devil ($\f$). The devil has provided her with a very specific chess situation. 
+% \end{nthcolumn*}
+%     \begin{nthcolumn}{1}
+%     You are trying to prove continuity of the quadratic function involving existential ($\e$) and universal ($\f$) quantifiers.
+%     \end{nthcolumn}
+%         \begin{nthcolumn}{2}
+%         You are trying to prove continuity of the quadratic function $f:x\mapsto x^2$.
+%         \end{nthcolumn}
+        
+% \begin{nthcolumn*}{0}
+% He will start with two moves of his choosing.
+% \end{nthcolumn*}
+%     \begin{nthcolumn}{1}
+%     $ \forall x_0\in\R, \eps > 0$
+%     \end{nthcolumn}
+%         \begin{nthcolumn}{2}
+%         No matter which point $x_0\in \R$ and which tolerance $\eps > 0$,
+%         \end{nthcolumn}
+
+% \begin{nthcolumn*}{0}
+% Emmy will then counter with one move which has to be such a powerful move that
+% \end{nthcolumn*}
+%     \begin{nthcolumn}{1}
+%     $\exists \delta > 0$
+%     \end{nthcolumn}
+%         \begin{nthcolumn}{2}
+%         we can always find a value $\delta > 0$,
+%         \end{nthcolumn}
+
+% \begin{nthcolumn*}{0}
+% no matter how good the Devil's next move is,
+% \end{nthcolumn*}
+%     \begin{nthcolumn}{1}
+%     $\forall x\in\R, |x-x_0|<\delta:$
+%     \end{nthcolumn}
+%         \begin{nthcolumn}{2}
+%         such that for any choice of $x_0$ under the condition that $|x-x_0|< \delta$
+%         \end{nthcolumn}
+        
+% \begin{nthcolumn*}{0}
+% Emmy will have won the game. Checkmate
+% \end{nthcolumn*}
+%     \begin{nthcolumn}{1}
+%     $|f(x)-f(x_0)| < \eps. \qed$
+%     \end{nthcolumn}
+%         \begin{nthcolumn}{2}
+%         we can always show that $|f(x)-f(x_0)| < \eps$. This proves continuity of $f$. QED.
+%         \end{nthcolumn}        
+% \end{paracol}
+
+Note how the statement of continuity, as written down in the right column with existential and universal quantifiers, indeed resembles a chess game (or a tennis match, or a boxing match, or actually any turn-based contest between two opponents). The universal quantifier $\forall$ acts as an adversary: We cannot choose the object that is supplied by this quantifier, we have to live with it. The existential quantifier allows us to react to that (and to everything preceding it). We can choose an object which may or may not help us with the statements succeeding it. After that, the second universal quantifier is another adversarial choice. It may depend on our previous choice, and it can be ``as bad as it can be''. The difficult task in performing this proof is choosing (in the line marked with the existential quantifier) a $\delta > 0$
+\begin{itemize}
+    \item depending on $x_0$ and $\eps$ (supplied by ``the devil'' beforehand) and
+    \item good enough to be able to cope with the devil's choice of $x$ coming afterwards.
+\end{itemize}
+\section{Good and bad moves}
+We can see how this is indeed very similar to a chess match: Each one of our turns must be a reaction to previous turns and we must and can work with the reality of the current state of the game (we cannot move a rook on the board if we don't have any left). At the same time, we have to look ahead and make a (good enough) turn that can cope with the worst (for us) possible future adversarial moves. It is completely possible to botch up a proof by making a wrong choice, just like making a bad move will make us lose a chess match, as the following example shows. Here, we are (without success) trying to prove that $f:x\mapsto x^2$ is a continuous function.
+
+\columnratio{0.5,0.5}
+\begin{paracol}{2}
+\begin{nthcolumn*}{0}
+The de$\f$il makes a powerful first move.
+\end{nthcolumn*}
+    \begin{nthcolumn}{1}
+    We consider, e.g., $x_0 = 3$ and $\eps = 10^{-10}$. 
+    \end{nthcolumn}  
+\begin{nthcolumn*}{0}
+$\e$mmy responds with a bad move.
+\end{nthcolumn*}
+    \begin{nthcolumn}{1}
+    We set $\delta = 10$. (This is a mistake)
+    \end{nthcolumn}  
+\begin{nthcolumn*}{0}
+The de$\f$il sees his chance and counters.
+\end{nthcolumn*}
+    \begin{nthcolumn}{1}
+    If we consider $x = 5$ (which is a possible choice, since $|x-x_0| = 2 < 10$), then
+    \end{nthcolumn}  
+\begin{nthcolumn*}{0}
+$\e$mmy loses.
+\end{nthcolumn*}
+    \begin{nthcolumn}{1}
+    $|f(x)-f(x_0)| = |25 - 9| = 16 > \eps$, which unfortunately fails to show that $f$ is continuous at $x_0 = 3$, although this is in fact the case.
+    \end{nthcolumn}  
+\end{paracol}
+Just as there are chess matches that are lost only due to an avoidable mistake, it is possible to not be able to prove a (true) statement just because we have not found the right idea. Growing as a mathematician means learning how to recognize opportunities just like an experienced chess player will not miss an opening created by their opponent. In some sense, being a mathematician is harder: A human chess opponent will sometimes make a mistake (which means that you can be a chess grand master even if you sometimes make a mistake, you just need to make fewer mistakes than your opponents on average), but mathematical rigour dictates that we need to prove a statement without any gaps (if we want to prove continuity everywhere, it is not sufficient to prove continuity on all odd integers).
+
+\section{Lost matches}
+Furthermore, just like there are games that cannot be won anymore (when all our moves can be countered), there are proofs that are impossible to do. For example, it is impossible to prove the following (that the set of natural numbers is bounded):
+\[\exists M\in \R~ \forall k\in \N: ~ k \leq M.\]
+We cannot choose a real number which dominates every single integer. In our metaphor: For any $M\in \R$ that we can start with, the devil can find a $k\in \N$ such that $k \leq M$ is \texttt{False}, i.e. $k > M$ (e.g. by setting $k = \texttt{round}(M)+1$). But the statement is true if we swap the order:
+\[\forall k\in \N~ \exists M\in \R:~ k\leq M.\]
+Indeed, no matter which integer $k$ the devil chooses, we can find a real number $M$ such that indeed $k\leq M$ (for example, by setting $M = k + 1$). This is the difference between a true statement and a wrong statement: We may hope to prove true statements, but wrong statements cannot be proven.
+
+\section*{Acknowledgement}
+The idea for this manuscript arose from a discussion with Alastair Jamieson-Lane after his talk ``Stories and Doodles'' at the NZMS colloquium 2022 in Christchurch. Alastair's input and feedback to this manuscript was invaluable.
+
+
+% \section{Keeping apart proof and proof-finding using discovery fiction}
+%     As working mathematicians we are familiar with the genesis of a proof, which involves the process of exploring the problem, trying (and failing at) things, while coming up with better ideas. We argue that it is not helpful to hide this necessary component of mathematical practice when teaching mathematics. We believe it is necessary that students are confronted with the fact that proofs do not organically grow into their final form in a linear fashion. A middle ground between the very chaotic exposition that is to follow 
+
+
+% \columnratio{0.5,0.5}
+% \begin{paracol}{2}
+% \begin{nthcolumn*}{0}
+% The chess match between the devil (playing white) and Emmy (playing black) will afterwards be recorded like this\footnote{Actually this is the ``Game of the Century'' between Bobby Fisher and Donald Byrne}:
+% 1. Nf3 Nf6 2. c4 g6 3. Nc3 Bg7 4. d4 O-O 5. Bf4 d5 6. Qb3 dxc4 7. Qxc4 c6 8. e4 Nbd7 9. Rd1 Nb6 10. Qc5 Bg4 11. Bg5 Na4 12. Qa3 Nxc3 13. bxc3 Nxe4 14. Bxe7 Qb6 15. Bc4 Nxc3 16. Bc5 Rfe8+ 17. Kf1 Be6 18. Bxb6 Bxc4+ 19. Kg1 Ne2+ 20. Kf1 Nxd4+ 21. Kg1 Ne2+ 22. Kf1 Nc3+ 23. Kg1 axb6 24. Qb4 Ra4 25. Qxb6 Nxd1 26. h3 Rxa2 27. Kh2 Nxf2 28. Re1 Rxe1 29. Qd8+ Bf8 30. Nxe1 Bd5 31. Nf3 Ne4 32. Qb8 b5 33. h4 h5 34. Ne5 Kg7 35. Kg1 Bc5+ 36. Kf1 Ng3+ 37. Ke1 Bb4+ 38. Kd1 Bb3+ 39. Kc1 Ne2+ 40. Kb1 Nc3+ 41. Kc1 Rc2\# 0-1
+% \end{nthcolumn*}
+%     \begin{nthcolumn}{1}
+%     One possible proof is the following: Let $\eps > 0$ and $x_0\in\R$. Choose $\delta := \min\{\frac{\eps}{4|x_0|},\sqrt\frac{\eps}{2}\}$. Then for any $x\in \R$ with $|x-x_0|<\delta$, we have
+%     \begin{align*}
+%         |f(x)-f(x_0)| &= |x^2-x_0^2| = |x-x_0|\cdot |x+x_0|\\
+%         &= |x-x_0|\cdot |x-x_0 + 2x_0|\\
+%         &\leq |x-x_0|\cdot (|x-x_0| + 2|x_0|)\\
+%         &< \delta\cdot (\delta + 2|x_0|)\\
+%         &= \delta^2 + \delta\cdot 2|x_0|\\
+%         &\leq \frac{\eps}{2} + \frac{\eps}{2}\\
+%         &=\eps
+%     \end{align*}
+%     \end{nthcolumn}  
+% \begin{nthcolumn*}{0}
+% This is indeed a full account of the chess match. We can take a chess board, proceed with all turns and see that indeed Black wins the match. 
+% \end{nthcolumn*}
+%     \begin{nthcolumn}{1}
+%     This is indeed a correct proof for the continuity of the quadratic function. We can go through this proof line by line, checking correctness of each step and finally concluding the statement. 
+%     \end{nthcolumn}  
+% \begin{nthcolumn*}{0}
+% Does reading this make us a good chess player? Of course not! We do not get any insight into the thought process of the chess players involved, although a close analysis of the moves might give us hints of what earlier moves were supposed to do later. Neither do we get any concrete pointers on how to become a better chess player. 
+% \end{nthcolumn*}
+%     \begin{nthcolumn}{1}
+%     Does reading this enable us to prove continuity of some other function (e.g. the square root)? Of course not! We do not know what the though process of the person devising the proof was, even if some of the later inequalities give us hints on earlier choices. Neither do we get any pointers on how to become better at proving things in general. 
+%     \end{nthcolumn}  
+% \begin{nthcolumn*}{0}
+% A documentation of a chess game is not the chess game itself, and it is also not a suitable beginners's reference for learning how to play chess.
+% \end{nthcolumn*}
+%     \begin{nthcolumn}{1}
+%     A recorded proof does not resemble the process of finding a proof, and it is also not a suitable beginner's reference for learning how to prove things.
+%     \end{nthcolumn}  
+% \end{paracol}
+
+% \section{Discovery Fiction}
+% We will use the concept of discovery fiction (\href{https://michaelnotebook.com/df/index.html}{https://michaelnotebook.com/df/index.html}) in order to record not only the finished proof, but also an account of how it would be in principle possible to find the proof (a fiction about the discovery process). This is better done orally, or in a video, but we can try to do this in text as well. We will not attempt to do this in parallel for the chess example (we won't pretend to know what Bobby Fisher and Donald Byrne thought during their match), but the metaphor clearly extends to that example.
+
+% A fairly realistic description of a gifted undergraduate student's discovery fiction would look like this:\todo{put this thought process into a thought bubble next to a doodle of Emmy, the mathematician. }
+
+% OK, so we want to prove that $f(x) = x^2$ is continuous. The $\forall$ symbol means that I cannot choose $\eps>0$ and $x_0\in \R$, so we will let them be arbitrary but fixed. Now I have to construct a $\delta > 0$ depending on $\eps$ and $x_0$ such that ... OK wow, that are too many steps to think about at once. Let's go the end. What do we want to prove?
+
+% $|f(x)-f(x_0)|$ has to be bounded from above by the $\eps$ from above. OK, let me see whether we can manipulate this expression and bound it somehow. $|f(x)-f(x_0)| = |x^2-x_0^2|$. Aha, I can factor this term into linear factors. I don't know whether that will help, but let's proceed for now: $|f(x)-f(x_0)| = |x^2-x_0^2| = |x-x_0|\cdot |x+x_0|$. AHA! There is one factor of $|x-x_0|$. Later we will only work with $x$ such that $|x-x_0|<\delta$, so this allows us to bound the first term! So clearly (later, when we figure out the gaps in the middle) we will have  $|f(x)-f(x_0)| < \delta \cdot |x+x_0|$. Hm, what can we do with the second part?\footnote{At this point, it is entirely possible that we will need to spend some minutes, hours, or days, (depending on the prover's experience), and multiple procrastination sessions, in order to come up with the next idea. The flow of text at this point wrongly suggests that this is a quick process every time.} OK, so $|x+x_0|$ is somehow a bit like $|x-x_0|$, but it is `bigger''? Can I separate out the known (and bound-able) term $|x-x_0|$ and an additional error term? We can write $|x+x_0| = |x-x_0 + 2x_0|$ (oh god, this already looks ugly, maybe I should first clean up my kitchen and come back later?). Well OK, I can use the triangle inequality here. Ugh! So $|x+x_0| \leq |x-x_0| + 2|x_0|$.\footnote{We have now probably scribbled a full page of scrap paper, we have tried some things, some things did not work, there are a lot of calculations scratched through, and coffee stains).}  Going back to our initial term, we now have $|f(x)-f(x_0)|\leq |x-x_0|\cdot (|x-x_0| + 2|x_0|) = |x-x_0|^2 + 2|x-x_0|\cdot |x_0|$. Later, we can bound the difference between $x$ and $x_0$, so we actually have $|f(x)-f(x_0)| < \delta^2 + 2|x_0|\cdot \delta$. OK, so now we are finally getting somewhere... What do we have to do again?\footnote{We are flipping through the pages, having another look at the assignment} OK, so $\eps$ and $x_0$ are given, we don't have any control over it. We can only choose $\delta$, but this choice can depend on $\eps$ and $x_0$ (in fact, it probably will \textit{have to }depend on them!) And this choice has to be so ``good'', that we can bound the final expression from above by $\eps$. OK, so in essence we have to choose $\delta$ such that $\delta^2 + 2|x_0|\cdot \delta < \eps$. How do we do that? This is a quadratic inequality the variable $\delta$, so we will need to look for roots of the quadratic and figure out which way the parabola is pointing, and then choose $\delta$ as one of the two roots (or one root? or no real roots for this quadratic function? Ugh, I hate this. Why didn't I listen to my mom and apply to med school?) [a day passes].\footnote{We tried this calculation two times (because we made a mistake somewhere which we do not catch at first, and then we got confused), but then we lost patience and instead watched a TV show for the rest of the evening. It is possible to do it this way (leading to a different choice for $\delta$, and a differently-looking proof than will appear later). In this instance, the next day we decide to try something else because maybe there is a quicker way.} OK, so I don't want to compute this quadric right now. I want to bound\footnote{We will repeatedly write down the same thing over and over again, because we do not want to browse back and forth through are now multiple pages of scrap paper filled with dead ends.} $\delta^2 + 2\delta\cdot |x_0|$ Can we bound the two terms $\delta^2$ and $2|x_0|\cdot \delta$ separately? The first thing is of course easy. We just need $\delta^2$ to be small. So how about $\delta \approx \sqrt \eps$. Then $\delta^2 \approx \eps$, which is roughly what we want. Hm, but this does not guarantee that the second term is small, because $2\delta \cdot |x_0| = 2\sqrt\eps|x_0|$ can be quite large, if $|x_0|$ is large... If we were to just bound this term, we would need $\delta \approx \frac{\eps1}{2|x_0|}$, because then $2\delta \cdot |x_0| \approx \eps$. OK, two problems: First, what happens if $|x_0|=0$? Then $\delta = +\infty$, roughly speaking. Second, how can we combine those two requirements for $\delta$? It has to be roughly $\sqrt\eps$ and at the same time roughly $\frac{\eps}{2|x_0|}$. Ah, of course it is enough if it is \textit{smaller} than those two terms. So let's choose $\delta = \min\{\sqrt\eps, \frac{\eps}{2|x_0|}\}$, so that both $\delta \leq \sqrt\eps$ and $\delta \leq  \frac{\eps}{2|x_0|}$. This incidentally also solves our problem with $x_0=0$, because in this case the first term will always be smaller, i.e. $\delta = \sqrt\eps$. Then, using one inequality for each term, $\delta^2+ 2\delta\cdot |x_0| \leq \sqrt\eps^2 + \frac{2|x_0|\eps}{2|x_0|} = \eps + \eps = 2\eps$. Ah well, this is a factor of 2. Of course this is not much of a big deal, but let's get rid of it by scaling $\delta$ suitably: We now choose $\delta = \min\{\sqrt\frac\eps 2, \frac{\eps}{4|x_0|}\}$. Does this work now?\footnote{we do the calculation with the modified $\delta$ on the edge of our scrap paper}  OK, wow, we did it! No let's write down everything neatly:
+
+% \framebox{ \parbox{\textwidth}{Let $\eps > 0$ and $x_0\in\R$. Choose \begin{equation}
+%     \delta := \min\{\frac{\eps}{4|x_0|},\sqrt\frac{\eps}{2}\}.\label{eq:delta}
+% \end{equation} Then for any $x\in \R$ with $|x-x_0|<\delta$, we have
+%     \begin{equation}\label{eq:bound}
+%         \begin{split}
+%         |f(x)-f(x_0)| &= |x^2-x_0^2| = |x-x_0|\cdot |x+x_0|\\
+%         &= |x-x_0|\cdot |x-x_0 + 2x_0|\\
+%         &\leq |x-x_0|\cdot (|x-x_0| + 2|x_0|)\\
+%         &< \delta\cdot (\delta + 2|x_0|)\\
+%         &= \delta^2 + \delta\cdot 2|x_0|\\
+%         &\leq \frac{\eps}{2} + \frac{\eps}{2}\\
+%         &=\eps
+%         \end{split}
+%     \end{equation}}}
+
+% \vspace{1em}This is exactly the proof from above. Textbooks (and most live lectures, regardless of the medium) usually only record this final result, similarly to how chess records only show the chess notation. While it saves time and paper, it completely hides the creative process which we all (extrapolating from our own experience) go through when we attempt a proof. 
+
+% This gives the wrong impression that this is how mathematics is done.
+
+% Of course, experience enables us to avoid certain dead ends, eventually we will know the tricks, and our manual computations will likely become better, so the discovery process will become shorter and more efficient in the course of our mathematical career. But note how we started the proof from the end, looking at the final term $|f(x)-f(x_0)|$ before actually deciding on a choice of $\delta$? This will always be the case, similarly to how a proficient chess player will try to think a few steps in advance, with a medium-term goal to work towards, and figuring out necessary intermediate steps to get ther. No person on earth has ever conceived the proof in the framed box in this order, and we boldly and confidently state that all working mathematicians will always start with the bounds in \eqref{eq:bound}, filling in the blanks in choosing a suitable $\delta$ in \eqref{eq:delta} later. 
+\end{document}
